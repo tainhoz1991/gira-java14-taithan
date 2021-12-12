@@ -1,5 +1,8 @@
 ## Datasource
-spring:  datasource:    url: jdbc:postgresql://localhost:5432/gira
+spring:
+  config:    import: openapi.yml
+  security:    user:      name: admin
+      password: 1234  datasource:    url: jdbc:postgresql://localhost:5432/gira
     username: postgres
     password: admin
   jpa:
@@ -13,4 +16,7 @@ spring:  datasource:    url: jdbc:postgresql://localhost:5432/gira
     user: postgres 
     password: admin
     driver-class-name: org.postgresql.Driver
+    
+springdoc:  swagger-ui:    url: /swagger-ui.html    version: 2.0
+  packages-to-scan:    - Cybersoft.javabackend.girajava14taithan
     
