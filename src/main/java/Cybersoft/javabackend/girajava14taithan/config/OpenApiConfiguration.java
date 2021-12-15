@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
@@ -17,12 +18,18 @@ public class OpenApiConfiguration {
 	public OpenAPI getOpenApi() {
 		return new OpenAPI()
 		.info(new Info().title(title)
-		.description("Spring shop sample application")
+		.description("Gira Application for Education Purpose")
 		.version("v0.0.1")
-		.license(new License().name("Apache 2.0").url("http://springdoc.org")))
+		.license(new License().name("NO LICENSE").url("http://taithan.dev"))
+		.contact(new Contact()
+				.email("")
+				.name("")
+				.url("")
+				)
+		)
 		.externalDocs(new ExternalDocumentation()
-		.description("SpringShop Wiki Documentation")
-		.url("https://springshop.wiki.github.org/docs"));
+		.description("Spring Documentation")
+		.url("https://docs.spring.io/spring-framework/docs/current/reference/html/"));
 		
 	}
 
