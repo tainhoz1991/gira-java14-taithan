@@ -1,26 +1,26 @@
 create table if not exists gira_role(
 	id bigint,
 	version int not null,
-	name varchar(255) not null,
+	name varchar(255) UNIQUE not null,
 	description varchar(255) not null,
 	code varchar(10) not null UNIQUE,
-	created_by varchar(36) not null,
-	created_at timestamp not null,
-	updated_by varchar(36) not null,
-	updated_at timestamp not null,
+	created_by varchar(36),
+	created_at timestamp,
+	updated_by varchar(36),
+	updated_at timestamp,
 	primary key (id)
 );
 
 create table if not exists gira_group_role(
 	id bigint,
 	version int not null,
-	name varchar(255) not null,
+	name varchar(255) UNIQUE not null,
 	description varchar(255) not null,
 	code varchar(10) not null UNIQUE,
-	created_by varchar(36) not null,
-	created_at timestamp not null,
-	updated_by varchar(36) not null,
-	updated_at timestamp not null,
+	created_by varchar(36),
+	created_at timestamp,
+	updated_by varchar(36),
+	updated_at timestamp,
 	primary key (id)
 );
 
@@ -29,6 +29,8 @@ create table if not exists gira_role_group_role(
 	group_role_id bigint,
 	primary key (role_id, group_role_id)
 );
+
+CREATE sequence hibernate_sequence start 1 increment 1;
 
 ALTER TABLE gira_role_group_role
 ADD CONSTRAINT fk_role
