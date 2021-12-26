@@ -1,6 +1,5 @@
 package Cybersoft.javabackend.girajava14taithan.role.controller;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -26,7 +25,7 @@ public interface RoleController {
 				@ApiResponse(responseCode = "403", description = "do not have the correct authorization!")}
 				)
 		@GetMapping(value = "/roles", produces = "application/json")
-		public ResponseEntity<List<RoleDto>> getRoles();
+		public ResponseEntity<Object> getRoles();
 		
 		
 		@Operation(method = "post", description = "create new role")

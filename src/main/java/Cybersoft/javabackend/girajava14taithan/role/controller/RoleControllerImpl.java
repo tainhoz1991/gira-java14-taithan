@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 
+import Cybersoft.javabackend.girajava14taithan.commo.ResponeHandler;
 import Cybersoft.javabackend.girajava14taithan.role.dto.RoleDto;
 import Cybersoft.javabackend.girajava14taithan.role.service.RoleService;
 
@@ -18,18 +19,18 @@ public class RoleControllerImpl implements RoleController{
 	}
 	
 	@Override
-	public ResponseEntity<List<RoleDto>> getRoles() {
+	public ResponseEntity<Object> getRoles() {
 		List<RoleDto> roles = service.findAllDto();
-		return new ResponseEntity<>(roles, HttpStatus.OK);
+		return ResponeHandler.getRespone(roles, HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> createRole(RoleDto dto, BindingResult bindingResult) {
 		if(bindingResult.hasErrors())
-			return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+			return ResponeHandler.getRespone(bindingResult, HttpStatus.BAD_REQUEST);
 		
 		RoleDto createRole = service.create(dto);
-		return new ResponseEntity<>(createRole, HttpStatus.OK);
+		return ResponeHandler.getRespone(createRole, HttpStatus.OK);
 	}
 
 }
