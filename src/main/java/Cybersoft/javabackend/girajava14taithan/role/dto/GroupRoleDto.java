@@ -10,17 +10,15 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder //ho tro...???
-public class RoleDto {
+@NoArgsConstructor
+@Builder
+public class GroupRoleDto {
 	private long id;
-	@NotBlank(message = "Role name can not be blank!")
+	@NotBlank(message = "GroupRole name can not be blank!")
 	private String name;
-	@NotBlank(message = "Role code can not be blank!")
+	@NotBlank(message = "GroupRole code can not be blank!")
 	private String code;
-	@NotBlank(message = "Role description can not be blank!")
+	@NotBlank(message = "GroupRole description can not be blank!")
 	private String description;
-	
-	
 }

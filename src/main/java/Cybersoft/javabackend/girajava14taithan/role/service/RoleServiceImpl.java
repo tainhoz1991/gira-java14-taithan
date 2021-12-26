@@ -27,7 +27,6 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public RoleDto create(RoleDto dto) {
 		Role role = RoleConverter.toRole(dto);
-		System.out.println(role.getName());
 		Role createRole = repository.save(role);
 		
 		return RoleConverter.toRoleDto(createRole);
