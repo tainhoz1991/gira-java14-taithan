@@ -1,7 +1,7 @@
 package Cybersoft.javabackend.girajava14taithan.role.service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -30,6 +30,16 @@ public class RoleServiceImpl implements RoleService{
 		Role createRole = repository.save(role);
 		
 		return RoleConverter.toRoleDto(createRole);
+	}
+
+	@Override
+	public Optional<Role> findByName(String roleName) {
+		return repository.findByName(roleName);
+	}
+
+	@Override
+	public Optional<Role> findByCode(String code) {
+		return repository.findByCode(code);
 	}
 
 }
