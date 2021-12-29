@@ -17,9 +17,9 @@ public class UniqueRoleCodeValidator implements ConstraintValidator<UniqueRoleCo
 	private String message;
 	
 	@Override
-	public void initialize(UniqueRoleCode constraintAnnotation) {
-		ConstraintValidator.super.initialize(constraintAnnotation);
-		this.message = constraintAnnotation.message();
+	public void initialize(UniqueRoleCode uniqueRoleCode) {
+		ConstraintValidator.super.initialize(uniqueRoleCode);
+		this.message = uniqueRoleCode.message();
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package Cybersoft.javabackend.girajava14taithan.role.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -31,6 +32,16 @@ public class GroupRoleServiceImpl implements GroupRoleService{
 		GroupRole creatGroupRole = repository.save(groupRole);
 		
 		return GroupRoleConverter.toGroupRoleDto(creatGroupRole);
+	}
+
+	@Override
+	public Optional<GroupRole> findByName(String groupRoleName) {
+		return repository.findByName(groupRoleName);
+	}
+
+	@Override
+	public Optional<GroupRole> findByCode(String groupRoleCode) {
+		return repository.findByCode(groupRoleCode);
 	}
 	
 	
