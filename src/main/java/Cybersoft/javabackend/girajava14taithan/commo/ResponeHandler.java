@@ -26,7 +26,7 @@ public class ResponeHandler { // cau hinh lai cai responeEntity
 			map.put("content", obj);
 			map.put("errors", "");
 		}
-		// contract with client
+		// contract with client: nhung thuoc tinh tra ve trong Response Body
 		map.put("hasErrors", hasErrors);
 		map.put("pageIndex", 1);
 		map.put("pageSize", 20);

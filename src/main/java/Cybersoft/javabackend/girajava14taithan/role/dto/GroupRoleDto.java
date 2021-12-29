@@ -2,6 +2,8 @@ package Cybersoft.javabackend.girajava14taithan.role.dto;
 
 import javax.validation.constraints.NotBlank;
 
+import Cybersoft.javabackend.girajava14taithan.role.validation.annotation.UniqueGroupRoleCode;
+import Cybersoft.javabackend.girajava14taithan.role.validation.annotation.UniqueGroupRoleName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,11 +16,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class GroupRoleDto {
+	
 	private long id;
-	@NotBlank(message = "GroupRole name can not be blank!")
+	
+	@UniqueGroupRoleName(message = "GroupRole name is used!")
+	@NotBlank(message = "{grouprole.name.not-blank}")
 	private String name;
-	@NotBlank(message = "GroupRole code can not be blank!")
+	
+	@UniqueGroupRoleCode(message = "GroupRole code is used")
+	@NotBlank(message = "{grouprole.name.not-blank}")
 	private String code;
-	@NotBlank(message = "GroupRole description can not be blank!")
+	
+	@NotBlank(message = "{grouprole.name.not-blank}")
 	private String description;
 }

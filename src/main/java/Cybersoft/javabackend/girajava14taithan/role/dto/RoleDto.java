@@ -16,6 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder //ho tro...???
 public class RoleDto {
+	
 	private long id;
 	@NotBlank(message = "{role.name.not-blank}")
 	@UniqueRoleName(message = "abcxyz")

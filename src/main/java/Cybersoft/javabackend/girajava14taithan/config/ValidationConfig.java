@@ -14,7 +14,7 @@ public class ValidationConfig {
 		ReloadableResourceBundleMessageSource messageSource
 			= new ReloadableResourceBundleMessageSource();
 		
-		messageSource.setBasename("classpath:/messages");
+		messageSource.setBasename("classpath:/messages"); // messages --> messages.properties
 		messageSource.setDefaultEncoding("UTF-8");
 		
 		return messageSource;

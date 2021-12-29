@@ -1,6 +1,5 @@
 package Cybersoft.javabackend.girajava14taithan.role.controller;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -25,7 +24,7 @@ public interface GroupRoleController {
 			@ApiResponse(responseCode = "403", description = "do not have the correct authorization!")}
 	)
 	@GetMapping(value = "/grouproles", produces = "application/json")
-	public ResponseEntity<List<GroupRoleDto>> getGroupRoleDto();
+	public ResponseEntity<Object> getGroupRoleDto();
 	
 	@Operation(method = "post", description = "create new group role")
 	@ApiResponses({
