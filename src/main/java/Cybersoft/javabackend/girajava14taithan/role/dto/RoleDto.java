@@ -12,8 +12,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder //ho tro...???
 public class RoleDto {
 	

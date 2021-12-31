@@ -12,17 +12,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import Cybersoft.javabackend.girajava14taithan.commo.model.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 @Table(name = "gira_group_role") // ten cua table
 public class GroupRole extends BaseEntity{

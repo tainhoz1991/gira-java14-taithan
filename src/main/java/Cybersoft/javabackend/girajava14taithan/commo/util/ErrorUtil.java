@@ -13,7 +13,6 @@ public class ErrorUtil {
 		List<ObjectError> errors = bindingResult.getAllErrors();
 
 		for (ObjectError error: errors) {
-			//System.out.println(error.getDefaultMessage());
 			errorMessage.add(error.getDefaultMessage());
 		}
 		return errorMessage;
