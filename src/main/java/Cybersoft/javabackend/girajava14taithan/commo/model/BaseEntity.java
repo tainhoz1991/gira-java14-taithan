@@ -14,10 +14,14 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@SuperBuilder
 // Tat ca cac thuoc tinh chung cho entity duoc khai bao trong day
 @MappedSuperclass // o duoi DB cung nhan cac thuoc tinh nay khi co class extends no
 public class BaseEntity {

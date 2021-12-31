@@ -2,6 +2,8 @@ package Cybersoft.javabackend.girajava14taithan.role.dto;
 
 import javax.validation.constraints.NotBlank;
 
+import Cybersoft.javabackend.girajava14taithan.role.validation.annotation.UniqueRoleCode;
+import Cybersoft.javabackend.girajava14taithan.role.validation.annotation.UniqueRoleName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,16 +12,19 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder //
+@NoArgsConstructor
+@Builder //ho tro...???
 public class RoleDto {
+	
 	private long id;
-	@NotBlank(message = "Role name can not be blank!")
+	@NotBlank(message = "{role.name.not-blank}")
+	@UniqueRoleName(message = "abcxyz")
 	private String name;
-	@NotBlank(message = "Role code can not be blank!")
+	@NotBlank(message = "{role.code.not-blank}")
+	@UniqueRoleCode(message = "Role code is used")
 	private String code;
-	@NotBlank(message = "Role description can not be blank!")
+	@NotBlank(message = "{role.description.not-blank}")
 	private String description;
 	
 	
