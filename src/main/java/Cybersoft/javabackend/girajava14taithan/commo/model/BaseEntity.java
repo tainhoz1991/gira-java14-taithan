@@ -1,5 +1,6 @@
 package Cybersoft.javabackend.girajava14taithan.commo.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 // Tat ca cac thuoc tinh chung cho entity duoc khai bao trong day
 @MappedSuperclass // o duoi DB cung nhan cac thuoc tinh nay khi co class extends no
-public class BaseEntity {
+public class BaseEntity implements Serializable{
 	@Id
 	@GeneratedValue // khi qua mot table moi (01 class khac extends tiep)
 														// no se resert lai so tt tu dau
