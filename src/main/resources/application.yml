@@ -1,9 +1,6 @@
 ## Datasource
 spring:
   config:    import: openapi.yml
-    
-  security:    user:      name: admin
-      password: 1234
         datasource:    url: jdbc:postgresql://localhost:5432/gira
     username: postgres
     password: admin
