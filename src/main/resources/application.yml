@@ -22,3 +22,9 @@ springdoc:  swagger-ui:    path: /swagger-ui.html
   api-docs:    path: /openapi/v3/api-docs
   packages-to-scan:    - Cybersoft.javabackend.girajava14taithan
     
+gira:
+  security:
+    jwt:
+      expiration: 86400000
+      secret: thisismysecret
+    
