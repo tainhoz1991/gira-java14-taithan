@@ -32,8 +32,6 @@ public class JwtUtils {
 		UserDetails userInfo = (UserDetails)(auth.getPrincipal());
 		Date now = new Date();
 		
-		
-		
 		return Jwts.builder() // cac thong tin can co de tao jwt
 				.setSubject(userInfo.getUsername()) // payload
 				.setIssuedAt(now)
