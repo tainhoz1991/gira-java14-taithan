@@ -93,5 +93,5 @@ public class JwtUtils {
 					.parseClaimsJws(token)
 					.getBody()
 					.getSubject();
-	}
+	}	
 }
