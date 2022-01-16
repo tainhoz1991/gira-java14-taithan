@@ -2,6 +2,8 @@ package Cybersoft.javabackend.girajava14taithan.security.jwt;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,10 +31,12 @@ public class JwtUtils {
 	// tao mot cai token
 	public String generateJwtToken(Authentication auth) {
 		// lay ra nhung thong tin
-		UserDetails userInfo = (UserDetails)(auth.getPrincipal());
+		if (auth == null) {
+			return null;
+		}
+		
+		UserDetails userInfo = (UserDetails)auth.getPrincipal();
 		Date now = new Date();
-		
-		
 		
 		return Jwts.builder() // cac thong tin can co de tao jwt
 				.setSubject(userInfo.getUsername()) // payload
@@ -70,5 +74,24 @@ public class JwtUtils {
 			log.error("JWT is not supported: {}", ue.getMessage());
 		}
 		return false;
+	}
+	
+	// lay ra cai token do request gui len nam trong Header
+	public String getJwtTokenFromRequest(HttpServletRequest req) {
+		String bearer = req.getHeader("Authorization");
+		// truong hop nao null thi tra ve null
+		if (bearer == null) {
+			return null;
+		}
+		// neu ko null.substring -> null exception
+		return bearer.substring("Bearer".length()).trim();
+	}
+
+	public String getUsernameFromToken(String token) {
+		
+		return Jwts.parser().setSigningKey(secret)
+					.parseClaimsJws(token)
+					.getBody()
+					.getSubject();
 	}
 }

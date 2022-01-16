@@ -1,5 +1,6 @@
 package Cybersoft.javabackend.girajava14taithan.security.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import Cybersoft.javabackend.girajava14taithan.security.jwt.JwtAuthenticationFilter;
 
 
 @Configuration
@@ -20,6 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private JwtAuthenticationFilter filter;
 	
 	// ma hoa password bang interface passwordencoder
 	// theo bcrypyt algrorithm
@@ -52,12 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		// disable csrf
 		http.csrf().disable();
 		
+		// add jwt filter
+		http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+		
 		// cau hinh xac thuc cho cac api
 		http.antMatcher("/**").authorizeRequests()
 			.antMatchers("/swagger-ui.html").permitAll()
 			.antMatchers("/swagger-ui/**").permitAll()
 			.antMatchers("/openapi/**").permitAll()
-			.antMatchers("/api/**").permitAll()
+			.antMatchers("/api/**").authenticated()
 			.anyRequest().authenticated();
 	}
 }
