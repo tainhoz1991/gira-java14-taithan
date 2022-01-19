@@ -24,17 +24,12 @@ public class UserControllerImpl implements UserController{
 	}
 
 	@Override
-	public ResponseEntity<Object> createRole(@Valid UserDto dto, BindingResult bindingResult) {
+	public ResponseEntity<Object> createUser(@Valid UserDto dto, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return ResponeHandler.getErrorRespone(bindingResult, HttpStatus.BAD_REQUEST);
 		}
 		
 		UserDto createUser = service.create(dto);
-		
-		// test thu
-//		if (createRole != null) {
-//			return new ResponseEntity<Object>(HttpStatus.BAD_GATEWAY);
-//		}
 		
 		return ResponeHandler.getRespone(createUser, HttpStatus.OK);
 	}
