@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		}
 		User currentUser = userOpt.get();
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(); // tao danh sach quyen
-		authorities.addAll(getAuthorities(userOpt.get()));
+		authorities.addAll(getAuthorities(currentUser));
 		
 		return new CustomUserDetails(currentUser.getUsername(), currentUser.getPassword(), authorities);
 	}

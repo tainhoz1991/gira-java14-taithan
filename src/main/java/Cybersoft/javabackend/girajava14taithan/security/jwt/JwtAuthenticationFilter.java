@@ -32,13 +32,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String token = utils.getJwtTokenFromRequest(request);
 		try {
+			String token = utils.getJwtTokenFromRequest(request);
 			if (token != null && utils.validateJwtToken(token)) {
 				String username = utils.getUsernameFromToken(token);
 				
-				// lay thang userdetails no chua du thong tin cua username (co password,
-				// cac quyen authorization)
 				UserDetails user = service.loadUserByUsername(username);
 				Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 				
