@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				SecurityContextHolder.getContext().setAuthentication(auth);
 			}
 		} catch (UsernameNotFoundException e) {
-			logger.debug("Co xam nhap bat hop le!!! {}", e);
+			log.debug("Co xam nhap bat hop le!!! {}", e);
 		}
 		
 		filterChain.doFilter(request, response);
