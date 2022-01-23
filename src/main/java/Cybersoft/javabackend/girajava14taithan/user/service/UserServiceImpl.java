@@ -12,21 +12,21 @@ import Cybersoft.javabackend.girajava14taithan.user.model.User;
 import Cybersoft.javabackend.girajava14taithan.user.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	private PasswordEncoder encoder;
-	
+
 	@Autowired
 	private UserRepository repository;
-	
+
 	@Override
 	public User getUserById(long id) {
 		Optional<User> userOpt = repository.findById(id);
 		if (userOpt.isPresent()) {
 			return userOpt.get();
 		}
-			
+
 		return null;
 	}
 
@@ -34,10 +34,10 @@ public class UserServiceImpl implements UserService{
 	public UserDto create(UserDto dto) {
 		User user = UserMapper.INSTANCE.userDtoToUser(dto);
 		user.setPassword(encoder.encode(dto.getPassword()));
-		
+
 		User createUser = repository.save(user);
 		createUser.setPassword(null);
-		
+
 		return UserMapper.INSTANCE.userToUserDt0(createUser);
 	}
 

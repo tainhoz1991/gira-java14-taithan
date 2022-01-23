@@ -65,4 +65,5 @@ public interface GroupRoleController {
 	public ResponseEntity<Object> deleteGroupRole(
 			@Parameter(description = "grouprole id") @PathVariable("id") long id
 			);
+	
 }

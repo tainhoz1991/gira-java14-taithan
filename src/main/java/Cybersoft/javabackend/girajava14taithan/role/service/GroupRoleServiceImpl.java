@@ -2,20 +2,30 @@ package Cybersoft.javabackend.girajava14taithan.role.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Cybersoft.javabackend.girajava14taithan.commo.exception.GiraEntityNotFoundException;
+import Cybersoft.javabackend.girajava14taithan.role.dto.GroupMapper;
 import Cybersoft.javabackend.girajava14taithan.role.dto.GroupRoleDto;
 import Cybersoft.javabackend.girajava14taithan.role.dto.UpdateGroupRoleDto;
 import Cybersoft.javabackend.girajava14taithan.role.exception.InvalidRoleException;
 import Cybersoft.javabackend.girajava14taithan.role.model.GroupRole;
 import Cybersoft.javabackend.girajava14taithan.role.repository.GroupRoleRepository;
 import Cybersoft.javabackend.girajava14taithan.role.util.GroupRoleConverter;
+import Cybersoft.javabackend.girajava14taithan.user.model.User;
+import Cybersoft.javabackend.girajava14taithan.user.repository.UserRepository;
 
 @Service
 public class GroupRoleServiceImpl implements GroupRoleService{
 	private GroupRoleRepository repository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	public GroupRoleServiceImpl(GroupRoleRepository repository) {
 		this.repository = repository;
@@ -24,7 +34,10 @@ public class GroupRoleServiceImpl implements GroupRoleService{
 	@Override
 	public List<GroupRoleDto> fillAllGroupRoleDto() {
 		List<GroupRole> groupRole = repository.findAll();
-		return GroupRoleConverter.toGroupRoleDtos(groupRole);
+		return groupRole.stream()
+				.map(r -> GroupMapper.INSTANCE.fromEntityGroupRoleDto(r))
+				.collect(Collectors.toList());
+		//return GroupRoleConverter.toGroupRoleDtos(groupRole);
 	}
 
 	@Override
@@ -79,7 +92,54 @@ public class GroupRoleServiceImpl implements GroupRoleService{
 			throw new InvalidRoleException("GroupRole ID is not existed");
 		}
 		repository.delete(groupRoleOpt.get());
+		
+		//repository.deleteById(id); ham co san co the su dung thang nay
 	}
-	
+
+
+	@Override
+	public void addUser(long groupId, long userId) {
+		GroupRole group = null;
+		
+		try {
+			group = repository.getById(groupId);
+		} catch (EntityNotFoundException e) {
+			throw new GiraEntityNotFoundException("Group Role is not existed");
+		}
+		
+		// getById vs findById giong nhau ???
+		Optional<User> userOpt = userRepository.findById(userId);
+		User user = userOpt.orElseThrow(() -> new GiraEntityNotFoundException("User is not existed"));
+		
+		if (!userOpt.isPresent()) {
+			return;
+		}
+		
+		group.addUser(user);
+		repository.save(group);
+		
+	}
+
+	@Override
+	public void removeUser(long groupId, long userId) {
+		GroupRole group = null;
+		
+		try {
+			group = repository.getById(groupId);
+		} catch (EntityNotFoundException e) {
+			throw new GiraEntityNotFoundException("Group Role is not existed");
+		}
+		
+		// getById vs findById giong nhau ???
+		Optional<User> userOpt = userRepository.findById(userId);
+		User user = userOpt.orElseThrow(() -> new GiraEntityNotFoundException("User is not existed"));
+		
+		if (!userOpt.isPresent()) {
+			return;
+		}
+		
+		group.removeUser(user);
+		repository.save(group);
+	}
 	
 }

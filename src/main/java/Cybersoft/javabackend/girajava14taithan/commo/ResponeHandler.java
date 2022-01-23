@@ -47,4 +47,20 @@ public class ResponeHandler { // cau hinh lai cai responeEntity
 
 		return new ResponseEntity<Object>(map, status);
 	}
+
+	public static ResponseEntity<Object> getRespone(HttpStatus ok) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		// contract with client: nhung thuoc tinh tra ve trong Response Body
+		map.put("content", "OK");
+		map.put("errors", "");
+		map.put("hasErrors", false);
+		map.put("pageIndex", 1);
+		map.put("pageSize", 20);
+		map.put("total", 20);
+		map.put("responeTime", LocalDateTime.now().toLocalTime());
+		map.put("httpStatus", ok);
+
+		return new ResponseEntity<Object>(map, ok);
+	}
 }

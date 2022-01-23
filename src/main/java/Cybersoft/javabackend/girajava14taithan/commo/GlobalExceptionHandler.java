@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = {Exception.class})
 	public Object handleUnexpectedException (Exception e) {
 		log.error("Error has been occured ===>");
-		
+		e.printStackTrace();
 		return ResponeHandler.getErrorRespone(e.getMessage()
 				, HttpStatus.BAD_REQUEST);
 	}
