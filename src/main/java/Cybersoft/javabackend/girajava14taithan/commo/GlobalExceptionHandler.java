@@ -28,4 +28,13 @@ public class GlobalExceptionHandler {
 		return ResponeHandler.getErrorRespone(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
+	
+	@ExceptionHandler(value = {Exception.class})
+	public Object handleUnexpectedException (Exception e) {
+		log.error("Error has been occured ===>");
+		
+		return ResponeHandler.getErrorRespone(e.getMessage()
+				, HttpStatus.BAD_REQUEST);
+	}
+	
 }
