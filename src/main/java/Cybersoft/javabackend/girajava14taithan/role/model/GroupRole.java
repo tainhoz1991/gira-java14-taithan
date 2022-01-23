@@ -48,4 +48,25 @@ public class GroupRole extends BaseEntity{
 		inverseJoinColumns = @JoinColumn(name = "user_id")
 			)
 	private Set<User> users = new LinkedHashSet<>();
+	
+	// helper method
+	public void addUser(User user) {
+		// khi tao moi user thi cai group user cua group role -> users
+		// se phai add user do vao
+		users.add(user);
+		// sau do ban than thang user moi duoc tao se co thuoc tinh
+		// groupRole va 01 list, nen ta lay cai list do -> getGroups
+		// va add chinh cai group ma nay add user (this -> GroupRole hien tai)
+		user.getGroups().add(this);
+	}
+	
+	public void removeUser(User user) {
+		users.remove(user);
+		user.getGroups().remove(this);
+	}
+	
+	public void clearUser() {
+		users.forEach(t -> t.getGroups().remove(this));
+		users.clear();
+	}
 }

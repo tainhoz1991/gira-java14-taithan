@@ -21,5 +21,9 @@ public interface GroupRoleService {
 	GroupRoleDto update(long id, UpdateGroupRoleDto dto);
 
 	void delete(long id);
+	
+	void addUser(long groupId, long userId);
+	
+	void removeUser(long groupId, long userId);
 
 }
